@@ -4,7 +4,7 @@ import Order from './Components/Order';
 
 const AppWrapper = styled.section`
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 25px auto;
 `;
 
 const Header = styled.h1`

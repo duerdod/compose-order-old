@@ -5,7 +5,7 @@ export const Products = [
     name: 'regular korv',
     price: 5,
     currency: 'kr',
-    qtySuffix: 'st'
+    quantitySuffix: 'st'
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const Products = [
     name: 'bombastic korv',
     price: 20,
     currency: 'kr',
-    qtySuffix: 'st'
+    quantitySuffix: 'st'
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const Products = [
     name: 'gigantic korv',
     price: 25,
     currency: 'kr',
-    qtySuffix: 'st'
+    quantitySuffix: 'st'
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const Products = [
     name: 'normal korv',
     price: 5,
     currency: 'kr',
-    qtySuffix: 'st'
+    quantitySuffix: 'st'
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const Products = [
     name: 'heavy bread',
     price: 15,
     currency: 'kr',
-    qtySuffix: 'st'
+    quantitySuffix: 'st'
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ export const Products = [
     name: 'light bread',
     price: 5,
     currency: 'kr',
-    qtySuffix: 'st'
+    quantitySuffix: 'st'
   },
   {
     id: 7,
@@ -53,6 +53,11 @@ export const Products = [
     name: 'mega heavy bread',
     price: 25,
     currency: 'kr',
-    qtySuffix: 'st'
+    quantitySuffix: 'st'
   }
 ];
+
+const Order = {
+  products: [],
+  price: 0
+};

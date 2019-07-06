@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import styled from '@emotion/styled';
-import { HotDogs, Breads } from './Products/index';
+import HotDogs from './HotDogs';
+import Breads from './Breads';
 
 const OrderWrapper = styled.div``;
 
 const Header = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 300px);
+  grid-template-columns: repeat(3, minmax(50px, 1fr));
   grid-gap: 3px;
   margin-top: 1.5rem;
   > h2 {
@@ -31,23 +32,46 @@ const PriceTitle = styled.h2``;
 
 const QtyTitle = styled.h2``;
 
-const Order = () => {
-  return (
-    <OrderWrapper>
-      <Header>
-        <DescriptionTitle step={1}>Select korvs</DescriptionTitle>
-        <QtyTitle>Quantity</QtyTitle>
-        <PriceTitle>Price</PriceTitle>
-      </Header>
-      <HotDogs />
-      <Header>
-        <DescriptionTitle step={2}>Select breads</DescriptionTitle>
-        <QtyTitle>Quantity</QtyTitle>
-        <PriceTitle>Price</PriceTitle>
-      </Header>
-      <Breads />
-    </OrderWrapper>
-  );
-};
+export const OrderContext = createContext();
+
+class Order extends React.Component {
+  state = {
+    items: [
+      {
+        name: '',
+        qty: 0
+      }
+    ]
+  };
+
+  handleQuantityChange = (name, qty) => {
+    const stateItem = [...this.state.items];
+    const newItem = { [name]: qty };
+    this.setState({ items: [...stateItem, newItem] });
+  };
+
+  render() {
+    const { state } = this;
+    const { handleQuantityChange } = this;
+    return (
+      <OrderWrapper>
+        <OrderContext.Provider value={{ state, handleQuantityChange }}>
+          <Header>
+            <DescriptionTitle step={1}>Korvs</DescriptionTitle>
+            <QtyTitle>Quantity</QtyTitle>
+            <PriceTitle>Price</PriceTitle>
+          </Header>
+          <HotDogs />
+          <Header>
+            <DescriptionTitle step={2}>Breads</DescriptionTitle>
+            <QtyTitle>Quantity</QtyTitle>
+            <PriceTitle>Price</PriceTitle>
+          </Header>
+          <Breads />
+        </OrderContext.Provider>
+      </OrderWrapper>
+    );
+  }
+}
 
 export default Order;
