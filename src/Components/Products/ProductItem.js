@@ -4,9 +4,12 @@ import styled from '@emotion/styled';
 const Item = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 300px);
+  grid-gap: 3px;
 
-  > * {
-    border: 2px solid #383838;
+  > p {
+    font-family: sans-serif;
+    padding: 1rem 0.5rem;
+    box-shadow: 0 0 0 3px #383838;
   }
 `;
 
