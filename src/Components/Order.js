@@ -1,8 +1,9 @@
-import React, { useState, createContext } from 'react';
+import React, { createContext } from 'react';
 import styled from '@emotion/styled';
 import HotDogs from './HotDogs';
 import Breads from './Breads';
-// import Products from '../data/data';
+import Header from './Header';
+import OrderValue from './Order/OrderValue';
 
 const products = [
   {
@@ -72,44 +73,17 @@ const products = [
 
 const OrderWrapper = styled.div``;
 
-const Header = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(50px, 1fr));
-  grid-gap: 3px;
-  margin-top: 1.5rem;
-  > h2 {
-    padding: 0.8rem 0.5rem;
-    text-align: left;
-    font-size: 1.5rem;
-    box-shadow: 0 0 0 3px #383838;
-  }
-`;
-
-const DescriptionTitle = styled.h2`
-
-&:before {
-  content: 'step ${p => p.step}.';
-  display: block;
-  font-size: .75rem;
-  font-family: sans-serif;
-  }
-`;
-
-const PriceTitle = styled.h2``;
-
-const QtyTitle = styled.h2``;
-
 export const OrderContext = createContext();
 
 class Order extends React.Component {
   state = {
-    items: products
+    products
   };
 
   handleQuantityChange = (qty, name, id, action) => {
-    let stateProducts = [...this.state.items];
-    let newProduct = { id, name, qty };
-    const isProductAdded = this.state.items.some(
+    const stateProducts = [...this.state.products];
+    const newProduct = { id, name, qty };
+    const isProductAdded = this.state.products.some(
       item => item.id === newProduct.id
     );
 
@@ -128,13 +102,12 @@ class Order extends React.Component {
             ? (item.qty = item.qty + 1)
             : (item.qty = item.qty - 1);
         }
+        return false;
       });
       // Set edited product to state.
-      this.setState({ items: stateProducts });
+      this.setState({ products: stateProducts });
       return;
     }
-    // Else add the product
-    this.setState({ items: [...stateProducts, newProduct] });
   };
 
   render() {
@@ -143,18 +116,12 @@ class Order extends React.Component {
     return (
       <OrderWrapper>
         <OrderContext.Provider value={{ state, handleQuantityChange }}>
-          <Header>
-            <DescriptionTitle step={1}>Korvs</DescriptionTitle>
-            <QtyTitle>Quantity</QtyTitle>
-            <PriceTitle>Price</PriceTitle>
-          </Header>
-          <HotDogs products={this.state.items} />
-          <Header>
-            <DescriptionTitle step={2}>Breads</DescriptionTitle>
-            <QtyTitle>Quantity</QtyTitle>
-            <PriceTitle>Price</PriceTitle>
-          </Header>
-          <Breads products={this.state.items} />
+          <Header step={1}>Korvs</Header>
+          <HotDogs products={this.state.products} />
+          <Header step={2}>Breads</Header>
+          <Breads products={this.state.products} />
+
+          <OrderValue products={this.state.products} />
         </OrderContext.Provider>
       </OrderWrapper>
     );

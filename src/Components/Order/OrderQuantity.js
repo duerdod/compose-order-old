@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from '@emotion/styled';
 import { OrderContext } from '../Order';
 
 const InputWrapper = styled.div`
   display: inline-block;
   margin-right: 5px;
+  position: relative;
 `;
 
 const QuantityButton = styled.button`
@@ -33,11 +34,22 @@ const Input = styled.input`
   }
 `;
 
+const ErrorMessage = styled.p`
+  font-family: sans-serif;
+  font-size: 0.65rem;
+  position: absolute;
+  color: red;
+  right: 55px;
+  bottom: 20px;
+`;
+
 const OrderQuantity = ({ product }) => {
   const { handleQuantityChange } = useContext(OrderContext);
+  const [isError, setError] = useState(false);
 
   const handleChange = (addedProduct, type) => {
     const { qty, name, id } = addedProduct;
+    setError(false);
     handleQuantityChange(qty, name, id, type);
   };
   return (
@@ -46,7 +58,10 @@ const OrderQuantity = ({ product }) => {
         <QuantityButton onClick={e => handleChange(product, 'increment')}>
           &#9650;
         </QuantityButton>
-        <QuantityButton onClick={e => handleChange(product, 'decrement')}>
+        <QuantityButton
+          disabled={product.qty <= 0}
+          onClick={e => handleChange(product, 'decrement')}
+        >
           &#9660;
         </QuantityButton>
         <Input
@@ -54,9 +69,10 @@ const OrderQuantity = ({ product }) => {
           min={0}
           value={product.qty}
           name={product.name}
-          onChange={() => false}
+          onChange={() => setError(true)}
         />
       </label>
+      {isError ? <ErrorMessage>Arrows</ErrorMessage> : null}
     </InputWrapper>
   );
 };

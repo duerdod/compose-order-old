@@ -1,5 +1,5 @@
 import React from 'react';
-import { getProducts } from './Product/utils/utils';
+import { getProducts } from './utils/utils';
 import { Product } from './Product/Product';
 
 const Breads = ({ products }) => {
