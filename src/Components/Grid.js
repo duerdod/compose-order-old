@@ -8,6 +8,14 @@ const Grid = styled.div`
   @media screen and (max-width: 40em) {
     grid-template-columns: repeat(1, minmax(50px, 1fr));
     margin: 20px;
+    ${p =>
+      p.isMobile &&
+      `grid-template-columns: repeat(3, minmax(50px, 1fr));
+        h2 {
+          font-size: 1rem;
+          justify-content: center;
+        }
+      `};
   }
 
   > * {

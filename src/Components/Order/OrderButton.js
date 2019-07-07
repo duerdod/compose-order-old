@@ -7,7 +7,7 @@ const Button = styled.button`
   border: 0;
   margin: 0.5rem 0 3rem 0;
   padding: 12px 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   background: transparent;
   cursor: pointer;
   border: 2px solid #383838;
@@ -19,6 +19,7 @@ const Button = styled.button`
   &:hover {
     background: #383838;
     color: #fffbf5;
+    font-style: italic;
   }
 `;
 

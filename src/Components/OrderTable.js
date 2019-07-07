@@ -46,7 +46,20 @@ class OrderTable extends React.Component {
     }
   };
 
-  resetAllQuantities = products => {
+  handleNativeChange = (product, qty) => {
+    if (!qty) return;
+    const productsInState = [...this.state.products];
+    const { id } = product;
+    productsInState.find(product => {
+      if (product.id === id) {
+        product.qty = parseInt(qty);
+      }
+      return false;
+    });
+    this.setState({ products: productsInState });
+  };
+
+  resetAllQuantities = () => {
     let productsInState = [...this.state.products];
     productsInState.map(p => (p.qty = 0));
     this.setState({ products: productsInState });
@@ -65,10 +78,13 @@ class OrderTable extends React.Component {
   };
 
   render() {
-    const { handleQuantityChange, resetQuantity } = this;
+    console.log(this.state);
+    const { handleQuantityChange, resetQuantity, handleNativeChange } = this;
     return (
       <OrderWrapper>
-        <OrderContext.Provider value={{ handleQuantityChange, resetQuantity }}>
+        <OrderContext.Provider
+          value={{ handleQuantityChange, resetQuantity, handleNativeChange }}
+        >
           <Header step={1}>Korvs</Header>
           <HotDogs products={this.state.products} />
           <Header step={2}>Breads</Header>

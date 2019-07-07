@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { OrderContext } from '../OrderTable';
 
@@ -37,44 +37,31 @@ const Input = styled.input`
   font-family: sans-serif;
 `;
 
-const ErrorMessage = styled.p`
-  font-family: sans-serif;
-  font-size: 0.65rem;
-  position: absolute;
-  color: red;
-  right: 55px;
-  bottom: 20px;
-`;
-
 const OrderQuantity = ({ product }) => {
-  const { handleQuantityChange } = useContext(OrderContext);
-  const [isError, setError] = useState(false);
+  const { handleQuantityChange, handleNativeChange } = useContext(OrderContext);
 
-  const handleChange = (clickedProduct, type) => {
-    setError(false);
-    handleQuantityChange(clickedProduct, type);
-  };
   return (
     <InputWrapper>
       <label htmlFor={product.name} name={product.name}>
-        <QuantityButton onClick={e => handleChange(product, 'increment')}>
+        <QuantityButton
+          onClick={e => handleQuantityChange(product, 'increment')}
+        >
           &#9650;
         </QuantityButton>
         <QuantityButton
           disabled={product.qty <= 0}
-          onClick={e => handleChange(product, 'decrement')}
+          onClick={e => handleQuantityChange(product, 'decrement')}
         >
           &#9660;
         </QuantityButton>
         <Input
           type="number"
           min={0}
-          value={product.qty}
+          value={parseInt(product.qty) || 0}
           name={product.name}
-          onChange={() => setError(true)}
+          onChange={e => handleNativeChange(product, e.target.value)}
         />
       </label>
-      {isError ? <ErrorMessage>Arrows</ErrorMessage> : null}
     </InputWrapper>
   );
 };

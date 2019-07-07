@@ -7,9 +7,15 @@ const OrderValueWrapper = styled.div`
   grid-template-columns: 1fr auto;
   border: 2px solid #383838;
   margin-top: 1rem;
-  font-family: ${({ theme }) => theme.sansSerif}, sans-serif;
-  font-weight: 900;
   padding: 0 6rem;
+  text-transform: uppercase;
+  span {
+    font-weight: 900;
+    font-family: ${({ theme }) => theme.sansSerif}, sans-serif;
+  }
+  @media screen and (max-width: 40em) {
+    padding: 0 2rem;
+  }
 `;
 
 const Total = styled.div`
@@ -19,8 +25,12 @@ const Total = styled.div`
 
 const OrderValue = ({ products }) => (
   <OrderValueWrapper>
-    <Total>Total:</Total>
-    <Total>{calcOrderValue(products)} SEK</Total>
+    <Total>
+      <span> Total:</span>
+    </Total>
+    <Total>
+      <span> {calcOrderValue(products)} SEK</span>
+    </Total>
   </OrderValueWrapper>
 );
 

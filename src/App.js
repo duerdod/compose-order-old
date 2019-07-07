@@ -14,6 +14,7 @@ const Header = styled.h1`
   text-align: center;
   margin-bottom: 0.5rem;
   letter-spacing: 5px;
+  line-height: 1;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.serif}, serif;
 `;

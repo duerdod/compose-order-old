@@ -21,7 +21,7 @@ const QtyTitle = styled.h2``;
 
 const Header = ({ children, step }) => {
   return (
-    <Grid columns={3}>
+    <Grid columns={3} isMobile={window && window.innerWidth < 480}>
       <DescriptionTitle>
         {children}
         <Step>step {step}.</Step>
