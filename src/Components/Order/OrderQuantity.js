@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from '@emotion/styled';
-import { OrderContext } from '../Order';
+import { OrderContext } from '../OrderTable';
 
 const InputWrapper = styled.div`
   display: inline-block;
@@ -11,7 +11,7 @@ const InputWrapper = styled.div`
 const QuantityButton = styled.button`
   outline: 0;
   border: 0;
-  margin: 0;
+  margin: 0 1px;
   padding: 3px 5px;
   font-size: 1rem;
   background: transparent;
@@ -23,7 +23,7 @@ const Input = styled.input`
   appearance: textfield;
   outline: 0;
   margin: 0 0 0 0.5rem;
-  padding: 5px;
+  padding: 5px 5px;
   border: 2px solid #383838;
   background: transparent;
   font-size: 1rem;

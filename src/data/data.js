@@ -1,19 +1,19 @@
-const Products = [
+const products = [
   {
     id: 1,
     productGroup: 1,
     name: 'regular korv',
     price: 5,
-    currency: 'kr',
+    currency: 'SEK',
     quantitySuffix: 'st',
     qty: 0
   },
   {
     id: 2,
     productGroup: 1,
-    name: 'bombastic korv',
+    name: 'blob korv',
     price: 20,
-    currency: 'kr',
+    currency: 'SEK',
     quantitySuffix: 'st',
     qty: 0
   },
@@ -22,7 +22,7 @@ const Products = [
     productGroup: 1,
     name: 'gigantic korv',
     price: 25,
-    currency: 'kr',
+    currency: 'SEK',
     quantitySuffix: 'st',
     qty: 0
   },
@@ -31,7 +31,7 @@ const Products = [
     productGroup: 1,
     name: 'normal korv',
     price: 5,
-    currency: 'kr',
+    currency: 'SEK',
     quantitySuffix: 'st',
     qty: 0
   },
@@ -40,7 +40,7 @@ const Products = [
     productGroup: 2,
     name: 'heavy bread',
     price: 15,
-    currency: 'kr',
+    currency: 'SEK',
     quantitySuffix: 'st',
     qty: 0
   },
@@ -49,7 +49,7 @@ const Products = [
     productGroup: 2,
     name: 'light bread',
     price: 5,
-    currency: 'kr',
+    currency: 'SEK',
     quantitySuffix: 'st',
     qty: 0
   },
@@ -58,15 +58,10 @@ const Products = [
     productGroup: 2,
     name: 'mega heavy bread',
     price: 25,
-    currency: 'kr',
+    currency: 'SEK',
     quantitySuffix: 'st',
     qty: 0
   }
 ];
 
-export default Products;
-
-export const Order = {
-  products: [],
-  price: 0
-};
+export default products;

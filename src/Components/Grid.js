@@ -15,9 +15,11 @@ const Grid = styled.div`
     align-items: center;
     box-shadow: 0 0 0 2px #383838;
     padding: 1.2rem 0.5rem;
+    font-family: ${({ theme }) => theme.serif}, serif;
   }
   & > :not(h2) {
-    font-family: sans-serif;
+    font-family: ${({ theme }) => theme.sansSerif}, sans-serif;
+    font-weight: 400;
     padding: 0.8rem 0.5rem;
   }
 `;

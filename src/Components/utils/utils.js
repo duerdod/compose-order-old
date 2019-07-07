@@ -17,6 +17,7 @@ export function getOrderProducts(products) {
       return {
         id: p.id,
         name: p.name,
+        price: p.price,
         qty: p.qty
       };
     });

@@ -5,78 +5,13 @@ import Breads from './Breads';
 import Header from './Header';
 import OrderValue from './Order/OrderValue';
 import OrderButton from './Order/OrderButton';
-
-const products = [
-  {
-    id: 1,
-    productGroup: 1,
-    name: 'regular korv',
-    price: 5,
-    currency: 'kr',
-    quantitySuffix: 'st',
-    qty: 0
-  },
-  {
-    id: 2,
-    productGroup: 1,
-    name: 'bombastic korv',
-    price: 20,
-    currency: 'kr',
-    quantitySuffix: 'st',
-    qty: 0
-  },
-  {
-    id: 3,
-    productGroup: 1,
-    name: 'gigantic korv',
-    price: 25,
-    currency: 'kr',
-    quantitySuffix: 'st',
-    qty: 0
-  },
-  {
-    id: 4,
-    productGroup: 1,
-    name: 'normal korv',
-    price: 5,
-    currency: 'kr',
-    quantitySuffix: 'st',
-    qty: 0
-  },
-  {
-    id: 5,
-    productGroup: 2,
-    name: 'heavy bread',
-    price: 15,
-    currency: 'kr',
-    quantitySuffix: 'st',
-    qty: 0
-  },
-  {
-    id: 6,
-    productGroup: 2,
-    name: 'light bread',
-    price: 5,
-    currency: 'kr',
-    quantitySuffix: 'st',
-    qty: 0
-  },
-  {
-    id: 7,
-    productGroup: 2,
-    name: 'mega heavy bread',
-    price: 25,
-    currency: 'kr',
-    quantitySuffix: 'st',
-    qty: 0
-  }
-];
+import products from '../data/data';
 
 const OrderWrapper = styled.div``;
 
 export const OrderContext = createContext();
 
-class Order extends React.Component {
+class OrderTable extends React.Component {
   state = {
     products
   };
@@ -84,6 +19,8 @@ class Order extends React.Component {
   handleQuantityChange = (qty, name, id, action) => {
     const stateProducts = [...this.state.products];
     const newProduct = { id, name, qty };
+
+    // Check if product with same id exist
     const isProductAdded = this.state.products.some(
       item => item.id === newProduct.id
     );
@@ -93,12 +30,12 @@ class Order extends React.Component {
       // Find it
       stateProducts.find(item => {
         if (item.id === newProduct.id) {
-          // Cannot decrement to a value less than 0.
+          // Cannot decrement to a value less than 0
           if (action === 'decrement' && item.qty === 0) {
             return (item.qty = 0);
           }
           // Increment or decrement values above 0
-          // Modify it.
+          // Modify it accordingly.
           return action === 'increment'
             ? (item.qty = item.qty + 1)
             : (item.qty = item.qty - 1);
@@ -111,12 +48,23 @@ class Order extends React.Component {
     }
   };
 
+  resetQuantity = product => {
+    const { id } = product;
+    const stateProducts = [...this.state.products];
+    stateProducts.find(product => {
+      if (product.id === id) {
+        return (product.qty = 0);
+      }
+      return false;
+    });
+    this.setState({ products: stateProducts });
+  };
+
   render() {
-    const { state } = this;
-    const { handleQuantityChange } = this;
+    const { handleQuantityChange, resetQuantity } = this;
     return (
       <OrderWrapper>
-        <OrderContext.Provider value={{ state, handleQuantityChange }}>
+        <OrderContext.Provider value={{ handleQuantityChange, resetQuantity }}>
           <Header step={1}>Korvs</Header>
           <HotDogs products={this.state.products} />
           <Header step={2}>Breads</Header>
@@ -130,4 +78,4 @@ class Order extends React.Component {
   }
 }
 
-export default Order;
+export default OrderTable;
