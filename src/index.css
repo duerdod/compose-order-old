@@ -5,8 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fffbf5;
+  background-color: #fffbf5;
   margin: 0 25px;
+  /* LOAD THIS FROM PUBLIC FOLDER */
+  background-image: url('https://www.transparenttextures.com/patterns/debut-light.png');
 }
 * {
   box-sizing: border-box;

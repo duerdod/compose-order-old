@@ -4,6 +4,7 @@ import HotDogs from './HotDogs';
 import Breads from './Breads';
 import Header from './Header';
 import OrderValue from './Order/OrderValue';
+import OrderButton from './Order/OrderButton';
 
 const products = [
   {
@@ -122,6 +123,7 @@ class Order extends React.Component {
           <Breads products={this.state.products} />
 
           <OrderValue products={this.state.products} />
+          <OrderButton products={this.state.products} />
         </OrderContext.Provider>
       </OrderWrapper>
     );
