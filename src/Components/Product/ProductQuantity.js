@@ -7,7 +7,7 @@ const ProductQuantityWrapper = styled.div``;
 const ProductQuantity = ({ product }) => {
   return (
     <ProductQuantityWrapper>
-      <OrderQuantity name={product.name} /> {product.quantitySuffix}
+      <OrderQuantity product={product} /> {product.quantitySuffix}
     </ProductQuantityWrapper>
   );
 };
