@@ -1,4 +1,4 @@
-## Todo:.
+## Todo:
 
 - Get data from elsewhere, set up Express backend?
 - Rewrite OrderTable class to stateful function, using reducer hook.
