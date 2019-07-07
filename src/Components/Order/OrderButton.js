@@ -22,7 +22,7 @@ const Button = styled.button`
   }
 `;
 
-function ordering(order) {
+function ordering(order, reset) {
   let orderText = `You're ordering: \n\n`;
   if (!order.length) return;
   const totalPrice = calcOrderValue(order);
@@ -34,11 +34,14 @@ function ordering(order) {
   );
   orderText += `\nat a total price of: ${totalPrice} SEK`;
   alert(orderText);
+  reset(order);
 }
 
-const OrderButton = ({ products }) => {
+const OrderButton = ({ products, resetAllQuantities }) => {
   return (
-    <Button onClick={() => ordering(getOrderProducts(products))}>
+    <Button
+      onClick={() => ordering(getOrderProducts(products), resetAllQuantities)}
+    >
       PLACE YO ORDER!
     </Button>
   );

@@ -17,6 +17,11 @@ const QuantityButton = styled.button`
   background: transparent;
   cursor: pointer;
   border: 2px solid #383838;
+  transition: all 0.2s ease;
+  &:hover {
+    background: #383838;
+    color: #fffbf5;
+  }
 `;
 
 const Input = styled.input`
@@ -30,8 +35,6 @@ const Input = styled.input`
   width: 45px;
   text-align: center;
   font-family: sans-serif;
-  & {
-  }
 `;
 
 const ErrorMessage = styled.p`

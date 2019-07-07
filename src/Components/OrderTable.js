@@ -46,6 +46,12 @@ class OrderTable extends React.Component {
     }
   };
 
+  resetAllQuantities = products => {
+    let productsInState = [...this.state.products];
+    productsInState.map(p => (p.qty = 0));
+    this.setState({ products: productsInState });
+  };
+
   resetQuantity = product => {
     const { id } = product;
     const productsInState = [...this.state.products];
@@ -68,7 +74,10 @@ class OrderTable extends React.Component {
           <Header step={2}>Breads</Header>
           <Breads products={this.state.products} />
           <OrderValue products={this.state.products} />
-          <OrderButton products={this.state.products} />
+          <OrderButton
+            resetAllQuantities={this.resetAllQuantities}
+            products={this.state.products}
+          />
         </OrderContext.Provider>
       </OrderWrapper>
     );
