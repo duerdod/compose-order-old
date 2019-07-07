@@ -1,5 +1,7 @@
 import React from 'react';
+import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
+import Theme from './Components/Theme';
 import Order from './Components/Order';
 
 const AppWrapper = styled.section`
@@ -17,10 +19,12 @@ const Header = styled.h1`
 
 function App() {
   return (
-    <AppWrapper>
-      <Header>Compose your custom korv</Header>
-      <Order />
-    </AppWrapper>
+    <ThemeProvider theme={Theme}>
+      <AppWrapper>
+        <Header>Compose your custom korv</Header>
+        <Order />
+      </AppWrapper>
+    </ThemeProvider>
   );
 }
 

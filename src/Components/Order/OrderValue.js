@@ -5,7 +5,8 @@ import { calcOrderValue } from '../utils/utils';
 const OrderValueWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  border: 3px solid #383838;
+  border: 2px solid #383838;
+  margin-top: 1rem;
 `;
 
 const Total = styled.div`
