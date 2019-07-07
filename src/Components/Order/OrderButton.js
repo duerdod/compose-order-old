@@ -39,7 +39,7 @@ function ordering(order) {
 const OrderButton = ({ products }) => {
   return (
     <Button onClick={() => ordering(getOrderProducts(products))}>
-      Place yo order!
+      PLACE YO ORDER!
     </Button>
   );
 };

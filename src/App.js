@@ -18,6 +18,16 @@ const Header = styled.h1`
   font-family: ${({ theme }) => theme.serif}, serif;
 `;
 
+const GitHubLink = styled.h5`
+  text-align: center;
+  font-size: 0.65rem;
+  color: #383838;
+  a {
+    text-decoration: underline;
+    font-family: ${({ theme }) => theme.sansSerif};
+  }
+`;
+
 function App() {
   return (
     <ThemeProvider theme={Theme}>
@@ -25,6 +35,11 @@ function App() {
         <Header>Compose your custom korv</Header>
         <OrderTable />
       </AppWrapper>
+      <GitHubLink>
+        <a href="https://github.com/duerdod/" target="_blank">
+          DUERDOD
+        </a>
+      </GitHubLink>
     </ThemeProvider>
   );
 }
