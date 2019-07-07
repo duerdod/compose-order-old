@@ -47,10 +47,9 @@ const OrderQuantity = ({ product }) => {
   const { handleQuantityChange } = useContext(OrderContext);
   const [isError, setError] = useState(false);
 
-  const handleChange = (addedProduct, type) => {
-    const { qty, name, id } = addedProduct;
+  const handleChange = (clickedProduct, type) => {
     setError(false);
-    handleQuantityChange(qty, name, id, type);
+    handleQuantityChange(clickedProduct, type);
   };
   return (
     <InputWrapper>

@@ -16,23 +16,21 @@ class OrderTable extends React.Component {
     products
   };
 
-  handleQuantityChange = (qty, name, id, action) => {
-    const stateProducts = [...this.state.products];
-    const newProduct = { id, name, qty };
-
+  handleQuantityChange = (clickedProduct, action) => {
+    const productsInState = [...this.state.products];
+    // Get id from clicked product
+    const { id } = clickedProduct;
     // Check if product with same id exist
-    const isProductAdded = this.state.products.some(
-      item => item.id === newProduct.id
-    );
+    const isProductAdded = this.state.products.some(item => item.id === id);
 
     // Is product already in state
     if (isProductAdded) {
       // Find it
-      stateProducts.find(item => {
-        if (item.id === newProduct.id) {
+      productsInState.find(item => {
+        if (item.id === id) {
           // Cannot decrement to a value less than 0
           if (action === 'decrement' && item.qty === 0) {
-            return (item.qty = 0);
+            return false;
           }
           // Increment or decrement values above 0
           // Modify it accordingly.
@@ -42,22 +40,22 @@ class OrderTable extends React.Component {
         }
         return false;
       });
-      // Set edited product to state.
-      this.setState({ products: stateProducts });
+      // Put products back to state
+      this.setState({ products: productsInState });
       return;
     }
   };
 
   resetQuantity = product => {
     const { id } = product;
-    const stateProducts = [...this.state.products];
-    stateProducts.find(product => {
+    const productsInState = [...this.state.products];
+    productsInState.find(product => {
       if (product.id === id) {
         return (product.qty = 0);
       }
       return false;
     });
-    this.setState({ products: stateProducts });
+    this.setState({ products: productsInState });
   };
 
   render() {
@@ -69,7 +67,6 @@ class OrderTable extends React.Component {
           <HotDogs products={this.state.products} />
           <Header step={2}>Breads</Header>
           <Breads products={this.state.products} />
-
           <OrderValue products={this.state.products} />
           <OrderButton products={this.state.products} />
         </OrderContext.Provider>

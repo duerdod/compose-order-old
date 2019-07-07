@@ -36,7 +36,11 @@ function App() {
         <OrderTable />
       </AppWrapper>
       <GitHubLink>
-        <a href="https://github.com/duerdod/" target="_blank">
+        <a
+          href="https://github.com/duerdod/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           DUERDOD
         </a>
       </GitHubLink>
