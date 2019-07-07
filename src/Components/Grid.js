@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(${p => p.columns}, minmax(50px, 1fr));
+  grid-template-columns: repeat(${p => p.columns}, 1fr);
   grid-gap: 2px;
   margin: 2px;
   @media screen and (max-width: 40em) {
@@ -24,6 +24,7 @@ const Grid = styled.div`
     box-shadow: 0 0 0 2px #383838;
     padding: 1.2rem 0.5rem;
     font-family: ${({ theme }) => theme.serif}, serif;
+    margin: 0;
   }
   & > :not(h2) {
     font-family: ${({ theme }) => theme.sansSerif}, sans-serif;

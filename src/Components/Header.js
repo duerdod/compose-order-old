@@ -20,11 +20,12 @@ const PriceTitle = styled.h2``;
 const QtyTitle = styled.h2``;
 
 const Header = ({ children, step }) => {
+  const isMobile = window && window.innerWidth > 600;
   return (
-    <Grid columns={3} isMobile={window && window.innerWidth < 480}>
+    <Grid columns={3} isMobile={isMobile}>
       <DescriptionTitle>
         {children}
-        <Step>step {step}.</Step>
+        {isMobile ? null : <Step>step {step}.</Step>}
       </DescriptionTitle>
       <QtyTitle>Quantity</QtyTitle>
       <PriceTitle>Price</PriceTitle>

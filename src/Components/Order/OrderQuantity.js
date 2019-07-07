@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { OrderContext } from '../OrderTable';
+import { Button } from '../ui';
 
 const InputWrapper = styled.div`
   display: inline-block;
@@ -8,14 +9,10 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-const QuantityButton = styled.button`
-  outline: 0;
-  border: 0;
+const QuantityButton = styled(Button)`
   margin: 0 1px;
   padding: 3px 5px;
   font-size: 1rem;
-  background: transparent;
-  cursor: pointer;
   border: 2px solid #383838;
   transition: all 0.2s ease;
   &:hover {
@@ -42,7 +39,7 @@ const OrderQuantity = ({ product }) => {
 
   return (
     <InputWrapper>
-      <label htmlFor={product.name} name={product.name}>
+      <label htmlFor={product.name}>
         <QuantityButton
           onClick={e => handleQuantityChange(product, 'increment')}
         >

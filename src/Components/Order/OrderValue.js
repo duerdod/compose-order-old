@@ -6,9 +6,10 @@ const OrderValueWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
   border: 2px solid #383838;
-  margin-top: 1rem;
-  padding: 0 6rem;
+  margin-top: -2px;
+  padding: 1rem 6rem;
   text-transform: uppercase;
+  text-align: initial;
   span {
     font-weight: 900;
     font-family: ${({ theme }) => theme.sansSerif}, sans-serif;

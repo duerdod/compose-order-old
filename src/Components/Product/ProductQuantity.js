@@ -2,19 +2,13 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import OrderQuantity from '../Order/OrderQuantity';
 import { OrderContext } from '../OrderTable';
+import { Button } from '../ui';
 
 const ProductQuantityWrapper = styled.div`
   position: relative;
 `;
 
-const ResetButton = styled.button`
-  outline: 0;
-  border: 0;
-  margin: 0 1px;
-  padding: 3px 5px;
-  font-size: 1rem;
-  background: transparent;
-  cursor: pointer;
+const ResetButton = styled(Button)`
   position: absolute;
   right: 5px;
 `;

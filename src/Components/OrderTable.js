@@ -78,7 +78,6 @@ class OrderTable extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     const { handleQuantityChange, resetQuantity, handleNativeChange } = this;
     return (
       <OrderWrapper>

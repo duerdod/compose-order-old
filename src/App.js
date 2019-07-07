@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import Theme from './Components/Theme';
 import OrderTable from './Components/OrderTable';
+import Modal from './Components/Modal/Modal';
+import ModalOpener, { toggleOnEscape } from './Components/Modal/ModalOpener';
 
 const AppWrapper = styled.section`
   max-width: 800px;
   margin: 25px auto;
+  text-align: right;
 `;
 
 const Header = styled.h1`
@@ -29,11 +32,25 @@ const GitHubLink = styled.h5`
   }
 `;
 
-function App() {
+const App = () => {
+  const [isModalOpen, toggleModalOpen] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener('keydown', e =>
+      toggleOnEscape(e, toggleModalOpen)
+    );
+    return document.removeEventListener('keydown', toggleOnEscape);
+  });
+
   return (
     <ThemeProvider theme={Theme}>
       <AppWrapper>
         <Header>Compose your custom korv</Header>
+        <ModalOpener
+          isModalOpen={isModalOpen}
+          toggleModalOpen={() => toggleModalOpen(!isModalOpen)}
+        />
+        <Modal isModalOpen={isModalOpen} toggleModalOpen={toggleModalOpen} />
         <OrderTable />
       </AppWrapper>
       <GitHubLink>
@@ -47,6 +64,6 @@ function App() {
       </GitHubLink>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
