@@ -6,9 +6,14 @@ import OrderTable from './Components/OrderTable';
 import Modal from './Components/Modal/Modal';
 import ModalOpener, { toggleOnEscape } from './Components/Modal/ModalOpener';
 
+const StyleLine = styled.div`
+  background: #383838;
+  height: 6px;
+`;
+
 const AppWrapper = styled.section`
   max-width: 800px;
-  margin: 25px auto;
+  margin: 0 auto;
   text-align: right;
 `;
 
@@ -39,11 +44,14 @@ const App = () => {
     document.addEventListener('keydown', e =>
       toggleOnEscape(e, toggleModalOpen)
     );
-    return document.removeEventListener('keydown', toggleOnEscape);
-  });
+    return () => {
+      document.removeEventListener('keydown', toggleOnEscape);
+    };
+  }, []);
 
   return (
     <ThemeProvider theme={Theme}>
+      <StyleLine />
       <AppWrapper>
         <Header>Compose your custom korv</Header>
         <ModalOpener
@@ -62,6 +70,7 @@ const App = () => {
           DUERDOD
         </a>
       </GitHubLink>
+      <StyleLine />
     </ThemeProvider>
   );
 };

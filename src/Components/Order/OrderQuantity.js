@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { OrderContext } from '../OrderTable';
 import { Button } from '../ui';
+import { IoIosPlay } from 'react-icons/io';
 
 const InputWrapper = styled.div`
   display: inline-block;
@@ -15,9 +16,30 @@ const QuantityButton = styled(Button)`
   font-size: 1rem;
   border: 2px solid #383838;
   transition: all 0.2s ease;
+  box-sizing: border-box;
+  line-height: 0.4;
+
+  ${p =>
+    p.up &&
+    `
+  svg {
+      transform: rotate(90deg);
+    }
+  `}
+  ${p =>
+    p.down &&
+    `
+  svg {
+      transform: rotate(-90deg);
+    }
+  `}
   &:hover {
     background: #383838;
     color: #fffbf5;
+
+    svg {
+      fill: ${({ theme }) => theme.white};
+    }
   }
 `;
 
@@ -32,6 +54,7 @@ const Input = styled.input`
   width: 45px;
   text-align: center;
   font-family: sans-serif;
+  box-sizing: border-box;
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     appearance: none;
@@ -44,17 +67,19 @@ const OrderQuantity = ({ product }) => {
 
   return (
     <InputWrapper>
-      <label htmlFor={product.name}>
+      <label htmlFor={product.name} style={{ display: 'flex' }}>
         <QuantityButton
+          up
           onClick={e => handleQuantityChange(product, 'increment')}
         >
-          &#9650;
+          <IoIosPlay />
         </QuantityButton>
         <QuantityButton
+          down
           disabled={product.qty <= 0}
           onClick={e => handleQuantityChange(product, 'decrement')}
         >
-          &#9660;
+          <IoIosPlay />
         </QuantityButton>
         <Input
           type="number"

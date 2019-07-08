@@ -41,6 +41,7 @@ const ModalButton = styled(Button)`
 export function toggleOnEscape(e, fn) {
   if (e.key !== 'Escape') return;
   fn(false);
+  console.log(this);
 }
 
 export const ModalOpener = ({ toggleModalOpen, isModalOpen }) => {
