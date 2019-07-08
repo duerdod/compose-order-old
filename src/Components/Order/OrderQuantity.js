@@ -11,7 +11,7 @@ const InputWrapper = styled.div`
 
 const QuantityButton = styled(Button)`
   margin: 0 1px;
-  padding: 3px 5px;
+  padding: 5px 7px;
   font-size: 1rem;
   border: 2px solid #383838;
   transition: all 0.2s ease;
@@ -32,6 +32,11 @@ const Input = styled.input`
   width: 45px;
   text-align: center;
   font-family: sans-serif;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
 `;
 
 const OrderQuantity = ({ product }) => {
