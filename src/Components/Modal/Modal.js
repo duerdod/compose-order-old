@@ -12,6 +12,11 @@ const ModalWrapper = styled.div`
   z-index: 999;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+  ${p =>
+    p.isMobile &&
+    `
+    width: 90%;
+  `}
 `;
 
 const ModalInnerWrapper = styled.div`
@@ -46,8 +51,9 @@ const DescriptiveText = styled.p`
 `;
 
 const Modal = ({ isModalOpen, toggleModalOpen }) => {
+  const isMobile = window && window.innerWidth > 600;
   return isModalOpen ? (
-    <ModalWrapper>
+    <ModalWrapper isMobile={isMobile}>
       <ModalInnerWrapper>
         <CloseButton onClick={() => toggleModalOpen(false)}>
           &times;

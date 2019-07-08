@@ -69,13 +69,13 @@ const OrderQuantity = ({ product }) => {
     <InputWrapper>
       <label htmlFor={product.name} style={{ display: 'flex' }}>
         <QuantityButton
-          up
+          down
           onClick={e => handleQuantityChange(product, 'increment')}
         >
           <IoIosPlay />
         </QuantityButton>
         <QuantityButton
-          down
+          up
           disabled={product.qty <= 0}
           onClick={e => handleQuantityChange(product, 'decrement')}
         >
