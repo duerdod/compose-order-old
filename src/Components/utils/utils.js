@@ -1,5 +1,5 @@
 export function getProductsByGroupId(products, id) {
-  return products.filter(product => product.productGroup === id);
+  return products.filter(product => product.groupId === id);
 }
 
 export function calcOrderValue(products) {
