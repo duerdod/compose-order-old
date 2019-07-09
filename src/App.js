@@ -9,6 +9,8 @@ import ModalOpener, { toggleOnEscape } from './Components/Modal/ModalOpener';
 const StyleLine = styled.div`
   background: #383838;
   height: 6px;
+  margin: 0;
+  opacity: 0.8;
 `;
 
 const AppWrapper = styled.section`
@@ -70,7 +72,6 @@ const App = () => {
           DUERDOD
         </a>
       </GitHubLink>
-      <StyleLine />
     </ThemeProvider>
   );
 };
