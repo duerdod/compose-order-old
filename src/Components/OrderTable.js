@@ -5,7 +5,7 @@ import Breads from './Breads';
 import Header from './Header';
 import OrderValue from './Order/OrderValue';
 import OrderButton from './Order/OrderButton';
-import products from '../data/data';
+import localProducts from '../data/data';
 
 const OrderWrapper = styled.div``;
 
@@ -13,8 +13,32 @@ export const OrderContext = createContext();
 
 class OrderTable extends React.Component {
   state = {
-    products
+    products: []
   };
+
+  componentDidMount() {
+    if (process.env.NODE_ENV === 'development') {
+      const getAllProducts = () => {
+        fetch(process.env.REACT_APP_BASE_URL)
+          .then(res => res.json())
+          .then(data => {
+            const products = data.products.map(p => ({
+              id: p._id,
+              groupId: p.groupId,
+              name: p.name,
+              price: p.price,
+              currency: p.currency,
+              qty: p.qty,
+              qtySuffix: p.qtySuffix
+            }));
+            this.setState({ products });
+          });
+      };
+      getAllProducts();
+    } else {
+      this.setState({ products: localProducts });
+    }
+  }
 
   handleQuantityChange = (clickedProduct, action) => {
     const productsInState = [...this.state.products];
