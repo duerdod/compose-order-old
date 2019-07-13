@@ -10,7 +10,21 @@ const ProductQuantityWrapper = styled.div`
 
 const ResetButton = styled(Button)`
   position: absolute;
-  right: 5px;
+  right: 8px;
+  font-size: 0.8rem;
+  width: 22px;
+  height: 22px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+    border: 1px solid ${({ theme }) => theme.black};
+    border-radius: 50%;
+  }
 `;
 
 const ProductQuantity = ({ product }) => {

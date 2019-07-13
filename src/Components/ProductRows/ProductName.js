@@ -3,11 +3,6 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { FiChevronRight } from 'react-icons/fi';
 
-const ProductName = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const MoreInfo = styled(FiChevronRight)`
   transition: all 0.2s ease;
   cursor: pointer;
@@ -16,27 +11,45 @@ const MoreInfo = styled(FiChevronRight)`
   font-size: 1.2rem;
   border-radius: 50%;
   border: 1px solid transparent;
-  &:hover {
-    transform: scale(1.2);
-    border: 1px solid black;
-    border-radius: 50%;
+`;
+
+const ProductName = styled.div`
+  cursor: pointer;
+  transition: all 0.2s ease;
+  > a {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-family: ${({ theme }) => theme.sansSerif};
+    transition: all 0.2s ease;
+    text-decoration: none;
   }
 
-  &::before {
-    content: 'i';
-    display: inline-block;
+  &:hover {
+    background: ${({ theme }) => theme.black};
+    a {
+      color: ${({ theme }) => theme.white};
+      font-weight: 600;
+    }
+    svg {
+      transform: scale(1.2);
+      padding: 4px;
+    }
+    polyline {
+      color: ${({ theme }) => theme.white};
+    }
   }
 `;
 
 const Name = ({ product }) => {
   return (
     <ProductName>
-      {product.name}
       <Link
         to={{
           pathname: `/product/${product.id}`
         }}
       >
+        {product.name}
         <MoreInfo aria-label="Show product info" />
       </Link>
     </ProductName>

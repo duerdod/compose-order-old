@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+
 import { Button } from '../ui';
 
 // DUMMY PRODUCT
@@ -98,6 +99,7 @@ const BuyButton = styled(Button)`
 const ProductPage = props => {
   const { id } = props.match.params;
   const [product, setProduct] = useState([]);
+
   useEffect(() => {
     const url = `${process.env.REACT_APP_API_URL}/api/product/${id}`;
     async function fetchProduct(url) {
@@ -118,7 +120,13 @@ const ProductPage = props => {
         </ProductInformation>
         <ProductInformation>
           <div className="product-names">
-            <Name onClick={() => props.history.goBack()}>{dummy.name}</Name>
+            <Name
+              onClick={() => {
+                alert('not hooked');
+              }}
+            >
+              {dummy.name}
+            </Name>
             <Subname>{dummy.subname}</Subname>
           </div>
           <BuyButton onClick={() => alert('not hooked')}>BUY ME</BuyButton>
