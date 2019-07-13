@@ -5,7 +5,7 @@ import { getOrderProducts, calcOrderValue } from '../utils/utils';
 const Button = styled.button`
   outline: 0;
   border: 0;
-  margin: 0.5rem 0 3rem 0;
+  margin: -2px 0 3rem 0;
   padding: 12px 0;
   font-size: 1.2rem;
   background: transparent;

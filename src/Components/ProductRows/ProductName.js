@@ -11,9 +11,15 @@ const ProductName = styled.div`
 const MoreInfo = styled(FiChevronRight)`
   transition: all 0.2s ease;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
   font-size: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid transparent;
   &:hover {
     transform: scale(1.2);
+    border: 1px solid black;
+    border-radius: 50%;
   }
 
   &::before {

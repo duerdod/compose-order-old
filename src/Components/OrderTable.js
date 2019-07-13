@@ -19,7 +19,7 @@ class OrderTable extends React.Component {
   componentDidMount() {
     if (process.env.NODE_ENV === 'development') {
       const getAllProducts = () => {
-        fetch(process.env.REACT_APP_BASE_URL)
+        fetch(`${process.env.REACT_APP_API_URL}/api/products`)
           .then(res => res.json())
           .then(data => {
             const products = data.products.map(p => ({
