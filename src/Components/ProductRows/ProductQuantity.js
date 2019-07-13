@@ -11,11 +11,10 @@ const ProductQuantityWrapper = styled.div`
 const ResetButton = styled(Button)`
   position: absolute;
   right: 8px;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  line-height: 0;
   width: 22px;
   height: 22px;
-  border: 1px solid transparent;
-  border-radius: 50%;
   border: 1px solid transparent;
   border-radius: 50%;
   transition: all 0.2s ease;
