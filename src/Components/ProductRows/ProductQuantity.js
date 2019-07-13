@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import OrderQuantity from '../Order/OrderQuantity';
-import { OrderContext } from '../OrderTable';
+import { OrderContext } from '../Order/Order';
 import { Button } from '../ui';
 
 const ProductQuantityWrapper = styled.div`

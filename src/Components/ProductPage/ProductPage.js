@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from '@emotion/styled';
-
+import { OrderContext } from '../Order/Order';
 import { Button } from '../ui';
 
-// DUMMY PRODUCT
+// product PRODUCT
 import { dummy } from './dummy';
 
 const ProductWrapper = styled.div`
@@ -97,18 +97,23 @@ const BuyButton = styled(Button)`
 `;
 
 const ProductPage = props => {
-  const { id } = props.match.params;
   const [product, setProduct] = useState([]);
+  const { handleQuantityChange } = useContext(OrderContext);
+  const { id } = props.match.params;
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_API_URL}/api/product/${id}`;
-    async function fetchProduct(url) {
-      const response = await fetch(url);
-      const data = await response.json();
-      setProduct(data.product);
-    }
-    // NOT DONE MODELED YET.
-    // fetchProduct(url).catch(err => console.warn(`ERR: ${err}`));
+    if (process.env.NODE_ENV === 'development') {
+      const url = `${process.env.REACT_APP_API_URL}/api/product/${id}`;
+      async function fetchProduct(url) {
+        const response = await fetch(url);
+        const data = await response.json();
+        setProduct({
+          id: data.product._id,
+          ...data.product
+        });
+      }
+      fetchProduct(url).catch(err => console.warn(`ERR: ${err}`));
+    } else setProduct(dummy);
   }, [id]);
 
   return (
@@ -116,22 +121,26 @@ const ProductPage = props => {
       <ProductWrapper>
         <GoBackButton onClick={props.history.goBack}> back </GoBackButton>
         <ProductInformation>
-          <img src={dummy.images[0]} className="product-image" />
+          <img
+            src={`${process.env.PUBLIC_URL + product && product.images[0]}`}
+            className="product-image"
+          />
         </ProductInformation>
         <ProductInformation>
           <div className="product-names">
-            <Name
-              onClick={() => {
-                alert('not hooked');
-              }}
-            >
-              {dummy.name}
-            </Name>
-            <Subname>{dummy.subname}</Subname>
+            <Name>{product.name}</Name>
+            <Subname>{product.subname}</Subname>
           </div>
-          <BuyButton onClick={() => alert('not hooked')}>BUY ME</BuyButton>
+          <BuyButton
+            onClick={() => {
+              handleQuantityChange(product, 'increment');
+              props.history.goBack();
+            }}
+          >
+            BUY ME
+          </BuyButton>
           <Description>
-            <p>{dummy.description}</p>
+            <p>{product.description}</p>
           </Description>
         </ProductInformation>
       </ProductWrapper>

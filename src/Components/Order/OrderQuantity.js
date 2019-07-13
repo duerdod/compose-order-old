@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
-import { OrderContext } from '../OrderTable';
+import { OrderContext } from './Order';
 import { Button } from '../ui';
 import { IoIosPlay } from 'react-icons/io';
 
