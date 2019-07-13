@@ -1,6 +1,7 @@
 ## Todo:
 
-- Get data from elsewhere, set up Express backend?
+- ~Get data from elsewhere, set up Express backend?~
+- Expand express API and MongoDB.
 - Rewrite OrderTable class to stateful function, using reducer hook.
 - Minor UX tweaks.
 - Some styling.
