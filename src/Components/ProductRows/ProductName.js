@@ -32,8 +32,7 @@ const ProductName = styled.div`
       font-weight: 600;
     }
     svg {
-      transform: scale(1.2);
-      padding: 4px;
+      transform: scale(1.3);
     }
     polyline {
       color: ${({ theme }) => theme.white};
