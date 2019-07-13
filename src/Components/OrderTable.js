@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import styled from '@emotion/styled';
 import HotDogs from './HotDogs';
 import Breads from './Breads';
-import Header from './Header';
+import GridHeader from './ProductRows/GridHeader';
 import OrderValue from './Order/OrderValue';
 import OrderButton from './Order/OrderButton';
 import localProducts from '../data/data';
@@ -32,7 +32,8 @@ class OrderTable extends React.Component {
               qtySuffix: p.qtySuffix
             }));
             this.setState({ products });
-          });
+          })
+          .catch(e => console.log(e));
       };
       getAllProducts();
     } else {
@@ -108,9 +109,9 @@ class OrderTable extends React.Component {
         <OrderContext.Provider
           value={{ handleQuantityChange, resetQuantity, handleNativeChange }}
         >
-          <Header step={1}>Korvs</Header>
+          <GridHeader step={1}>Korvs</GridHeader>
           <HotDogs products={this.state.products} />
-          <Header step={2}>Breads</Header>
+          <GridHeader step={2}>Breads</GridHeader>
           <Breads products={this.state.products} />
           <OrderValue products={this.state.products} />
           <OrderButton

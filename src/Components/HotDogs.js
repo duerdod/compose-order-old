@@ -1,6 +1,6 @@
 import React from 'react';
 import { getProductsByGroupId } from './utils/utils';
-import { Product } from './Product/Product';
+import { Product } from './ProductRows/Product';
 
 const HotDogs = ({ products }) => {
   return getProductsByGroupId(products, 1).map(product => (
