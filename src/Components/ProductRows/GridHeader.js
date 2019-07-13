@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Grid from './Grid';
+import Grid from '../Grid';
 
 const DescriptionTitle = styled.h2`
   position: relative;
@@ -19,7 +19,7 @@ const PriceTitle = styled.h2``;
 
 const QtyTitle = styled.h2``;
 
-const Header = ({ children, step }) => {
+const GridHeader = ({ children, step }) => {
   const isMobile = window && window.innerWidth > 600;
   return (
     <Grid columns={3} isMobile={isMobile}>
@@ -33,4 +33,4 @@ const Header = ({ children, step }) => {
   );
 };
 
-export default Header;
+export default GridHeader;

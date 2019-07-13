@@ -1,10 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import StartPage, { AppWrapper } from './StartPage';
+import { ThemeProvider } from 'emotion-theming';
+import Theme from './Components/Theme';
+import ProductPage from './Components/ProductPage/ProductPage';
+import NotFound from './Components/NotFound';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const ComposeOrder = props => (
+  <ThemeProvider theme={Theme}>
+    <AppWrapper>
+      <BrowserRouter history={props.history}>
+        <Switch>
+          <Route exact path="/" component={StartPage} />
+          <Route path="/product/:id" component={ProductPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </BrowserRouter>
+    </AppWrapper>
+  </ThemeProvider>
+);
+
+ReactDOM.render(<ComposeOrder />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
