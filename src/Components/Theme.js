@@ -1,4 +1,5 @@
 import { css } from '@emotion/core';
+
 const Theme = {
   black: '#383838',
   white: '#fffbf5',

@@ -8,4 +8,5 @@ export const Button = styled.button`
   font-size: 1rem;
   background: transparent;
   cursor: pointer;
+  font-family: ${({ theme }) => theme.sansSerif};
 `;

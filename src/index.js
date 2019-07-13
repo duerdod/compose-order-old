@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
+import Header from './Components/Page/Header';
 import StartPage, { AppWrapper } from './StartPage';
 import { ThemeProvider } from 'emotion-theming';
 import Theme from './Components/Theme';
@@ -11,15 +12,16 @@ import * as serviceWorker from './serviceWorker';
 
 const ComposeOrder = props => (
   <ThemeProvider theme={Theme}>
-    <AppWrapper>
-      <BrowserRouter history={props.history}>
+    <BrowserRouter history={props.history}>
+      <AppWrapper>
+        <Header />
         <Switch>
           <Route exact path="/" component={StartPage} />
           <Route path="/product/:id" component={ProductPage} />
           <Route component={NotFound} />
         </Switch>
-      </BrowserRouter>
-    </AppWrapper>
+      </AppWrapper>
+    </BrowserRouter>
   </ThemeProvider>
 );
 

@@ -7,7 +7,7 @@ import ModalOpener, { toggleOnEscape } from './Components/Modal/ModalOpener';
 export const AppWrapper = styled.section`
   max-width: 800px;
   margin: 0 auto;
-  text-align: right;
+  position: relative;
 `;
 
 const GitHubLink = styled.h5`

@@ -11,6 +11,9 @@ const ModalButton = styled(Button)`
   margin: 0;
   padding: 0;
   font-size: 1.2rem;
+  position: absolute;
+  right: 0;
+  top: -25px;
 
   &:hover {
     ${p =>
