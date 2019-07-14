@@ -113,7 +113,8 @@ const ProductPage = props => {
         });
       }
       fetchProduct(url).catch(err => console.warn(`ERR: ${err}`));
-    } else setProduct(dummy);
+    }
+    setProduct(dummy);
   }, [id]);
 
   return (

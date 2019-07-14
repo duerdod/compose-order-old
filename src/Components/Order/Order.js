@@ -1,36 +1,20 @@
 import React, { createContext } from 'react';
+import Products from './Products';
 
 import localProducts from '../../data/data';
 
 export const OrderContext = createContext();
 
-// This handles state across the app. Keep it light.
 class Order extends React.Component {
   state = {
     products: []
   };
 
   componentDidMount() {
-    // Because the API ain't published.
+    // Because the API ain't deployed.
     if (process.env.NODE_ENV === 'development') {
-      const getAllProducts = () => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/products`)
-          .then(res => res.json())
-          .then(data => {
-            const products = data.products.map(p => ({
-              id: p._id,
-              groupId: p.groupId,
-              name: p.name,
-              price: p.price,
-              currency: p.currency,
-              qty: p.qty,
-              qtySuffix: p.qtySuffix
-            }));
-            this.setState({ products });
-          })
-          .catch(e => console.log(e));
-      };
-      getAllProducts();
+      const products = this.props.products;
+      this.setState({ products });
     } else {
       this.setState({ products: localProducts });
     }
