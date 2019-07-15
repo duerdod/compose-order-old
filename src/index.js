@@ -19,7 +19,7 @@ const endpoint =
     : process.env.REACT_APP_API_URL_DEV;
 
 const client = new ApolloClient({
-  uri: endpoint,
+  uri: 'http://compose-order-api.herokuapp.com/',
   fetchOptions: {
     mode: 'cors'
   }
