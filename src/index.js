@@ -19,7 +19,7 @@ const endpoint =
     : process.env.REACT_APP_API_URL_DEV;
 
 const client = new ApolloClient({
-  uri: endpoint
+  uri: 'http//localhost:4000'
 });
 
 const ComposeOrder = props => (
