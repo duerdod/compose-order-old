@@ -1,5 +1,5 @@
 export const dummy = {
-  id: 1,
+  id: 'cjy2q1q0raucq0b366061xoos',
   name: 'regular korv',
   subname: 'brand',
   description:

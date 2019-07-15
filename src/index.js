@@ -9,7 +9,7 @@ import Header from './Components/Page/Header';
 import StartPage, { AppWrapper } from './StartPage';
 import { ThemeProvider } from 'emotion-theming';
 import Theme from './Components/Theme';
-import ProductPage from './Components/ProductPage/ProductPage';
+import Product from './Components/ProductPage/Product';
 import NotFound from './Components/NotFound';
 import * as serviceWorker from './serviceWorker';
 
@@ -34,7 +34,7 @@ const ComposeOrder = props => (
             <Header />
             <Switch>
               <Route exact path="/" component={StartPage} />
-              <Route path="/product/:id" component={ProductPage} />
+              <Route path="/product/:id" component={Product} />
               <Route component={NotFound} />
             </Switch>
           </AppWrapper>
