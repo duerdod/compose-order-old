@@ -14,12 +14,15 @@ import NotFound from './Components/NotFound';
 import * as serviceWorker from './serviceWorker';
 
 const endpoint =
-  process.NODE_ENV === 'development'
+  process.NODE_ENV === 'production'
     ? process.env.REACT_APP_API_URL
     : process.env.REACT_APP_API_URL_DEV;
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000'
+  uri: endpoint,
+  fetchOptions: {
+    mode: 'cors'
+  }
 });
 
 const ComposeOrder = props => (
