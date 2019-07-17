@@ -11,9 +11,6 @@ const ModalButton = styled(Button)`
   margin: 0;
   padding: 0;
   font-size: 1.2rem;
-  position: absolute;
-  right: 0;
-  top: -25px;
 
   &:hover {
     ${p =>
@@ -44,7 +41,6 @@ const ModalButton = styled(Button)`
 export function toggleOnEscape(e, fn) {
   if (e.key !== 'Escape') return;
   fn(false);
-  console.log(this);
 }
 
 export const ModalOpener = ({ toggleModalOpen, isModalOpen }) => {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import LoadingPage from '../LoadingPage';
-import ProductPage from './ProductPage';
 
 const GET_PRODUCT = gql`
   query GET_PRODUCT($id: ID!) {

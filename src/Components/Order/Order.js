@@ -1,5 +1,4 @@
 import React, { createContext } from 'react';
-import Products from './Products';
 
 import localProducts from '../../data/data';
 

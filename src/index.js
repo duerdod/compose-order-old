@@ -4,19 +4,23 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import './index.css';
+import { ThemeProvider } from 'emotion-theming';
 import Theme from './Components/Theme';
 import Header from './Components/Page/Header';
+import Nav from './Components/Nav';
 import Products from './Components/Order/Products'; // Fetches products, puts them to "global" state
-import StartPage, { AppWrapper } from './StartPage';
+import OrderTable from './Components/OrderTable';
+import { AppWrapper } from './App';
 import ProductPage from './Components/ProductPage/ProductPage';
-import { ThemeProvider } from 'emotion-theming';
+import LoginPage from './Components/Login/LoginPage';
+// import AddProduct from './Components/Login/AddProduct';
 import NotFound from './Components/NotFound';
 import * as serviceWorker from './serviceWorker';
 
-const endpoint =
-  process.NODE_ENV === 'production'
-    ? process.env.REACT_APP_API_URL
-    : process.env.REACT_APP_API_URL_DEV;
+// const endpoint =
+//   process.NODE_ENV === 'production'
+//     ? process.env.REACT_APP_API_URL
+//     : process.env.REACT_APP_API_URL_DEV;
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
@@ -28,13 +32,16 @@ const client = new ApolloClient({
 const ComposeOrder = props => (
   <ThemeProvider theme={Theme}>
     <ApolloProvider client={client}>
-      <BrowserRouter history={props.history}>
+      <BrowserRouter>
         <Products>
           <AppWrapper>
             <Header />
+            <Nav />
             <Switch>
-              <Route exact path="/" component={StartPage} />
+              <Route exact path="/" component={OrderTable} />
               <Route path="/product/:id" component={ProductPage} />
+              <Route path="/login" component={LoginPage} />
+              {/* <Route path="/addproduct" component={AddProduct} /> */}
               <Route component={NotFound} />
             </Switch>
           </AppWrapper>

@@ -119,6 +119,7 @@ const ProductPage = props => {
               src={`${process.env.PUBLIC_URL}/images/${product &&
                 product.images}`}
               className="product-image"
+              alt=""
             />
           </ProductInformation>
           <ProductInformation>

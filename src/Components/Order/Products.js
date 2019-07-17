@@ -4,8 +4,6 @@ import gql from 'graphql-tag';
 import Order from './Order';
 import LoadingPage from '../LoadingPage';
 
-import localProducts from '../../data/data';
-
 const GET_ALL_PRODUCTS = gql`
   query GET_ALL_PRODUCTS {
     products {
