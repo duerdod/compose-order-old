@@ -4,12 +4,12 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import './index.css';
-import Products from './Components/Order/Products'; // Fetches products, puts them to "global" state
-import Header from './Components/Page/Header';
-import StartPage, { AppWrapper } from './StartPage';
-import { ThemeProvider } from 'emotion-theming';
 import Theme from './Components/Theme';
-import Product from './Components/ProductPage/Product';
+import Header from './Components/Page/Header';
+import Products from './Components/Order/Products'; // Fetches products, puts them to "global" state
+import StartPage, { AppWrapper } from './StartPage';
+import ProductPage from './Components/ProductPage/ProductPage';
+import { ThemeProvider } from 'emotion-theming';
 import NotFound from './Components/NotFound';
 import * as serviceWorker from './serviceWorker';
 
@@ -19,7 +19,7 @@ const endpoint =
     : process.env.REACT_APP_API_URL_DEV;
 
 const client = new ApolloClient({
-  uri: 'https://compose-order-api.herokuapp.com',
+  uri: 'http://localhost:4000',
   fetchOptions: {
     mode: 'cors'
   }
@@ -34,7 +34,7 @@ const ComposeOrder = props => (
             <Header />
             <Switch>
               <Route exact path="/" component={StartPage} />
-              <Route path="/product/:id" component={Product} />
+              <Route path="/product/:id" component={ProductPage} />
               <Route component={NotFound} />
             </Switch>
           </AppWrapper>

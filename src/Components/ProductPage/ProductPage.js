@@ -100,43 +100,47 @@ const BuyButton = styled(Button)`
 const ProductPage = props => {
   const [product, setProduct] = useState([]);
   const { handleQuantityChange } = useContext(OrderContext);
-  const { id } = props.match.params;
-  console.log(props);
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       setProduct(props.product);
     } else {
       setProduct(dummy);
     }
-  }, [id]);
+  }, [product]);
 
   return (
-    <ProductWrapper>
-      <GoBackButton onClick={props.history.goBack}> back </GoBackButton>
-      <ProductInformation>
-        {/* <img
-            src={`${process.env.PUBLIC_URL + product && product.images[0]}`}
-            className="product-image"
-          /> */}
-      </ProductInformation>
-      <ProductInformation>
-        <div className="product-names">
-          <Name>{product.name}</Name>
-          <Subname>{product.subname}</Subname>
-        </div>
-        <BuyButton
-          onClick={() => {
-            handleQuantityChange(product, 'increment');
-            props.history.goBack();
-          }}
-        >
-          BUY ME
-        </BuyButton>
-        <Description>
-          <p>{product.description}</p>
-        </Description>
-      </ProductInformation>
-    </ProductWrapper>
+    <Product
+      id={props.match.params.id}
+      render={product => (
+        <ProductWrapper>
+          <GoBackButton onClick={props.history.goBack}> back </GoBackButton>
+          <ProductInformation>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/${product &&
+                product.images}`}
+              className="product-image"
+            />
+          </ProductInformation>
+          <ProductInformation>
+            <div className="product-names">
+              <Name>{product.name}</Name>
+              <Subname>{product.subname}</Subname>
+            </div>
+            <BuyButton
+              onClick={() => {
+                handleQuantityChange(product, 'increment');
+                props.history.goBack();
+              }}
+            >
+              BUY ME
+            </BuyButton>
+            <Description>
+              <p>{product.description}</p>
+            </Description>
+          </ProductInformation>
+        </ProductWrapper>
+      )}
+    />
   );
 };
 
