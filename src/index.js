@@ -23,7 +23,7 @@ import * as serviceWorker from './serviceWorker';
 //     : process.env.REACT_APP_API_URL_DEV;
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: 'https://compose-order-api.herokuapp.com',
   fetchOptions: {
     mode: 'cors'
   }
