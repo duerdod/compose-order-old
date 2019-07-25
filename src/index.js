@@ -15,7 +15,6 @@ import ProductPage from './Components/ProductPage/ProductPage';
 import LoginPage from './Components/Login/LoginPage';
 // import AddProduct from './Components/Login/AddProduct';
 import NotFound from './Components/NotFound';
-import * as serviceWorker from './serviceWorker';
 
 // const endpoint =
 //   process.NODE_ENV === 'production'
@@ -52,8 +51,3 @@ const ComposeOrder = props => (
 );
 
 ReactDOM.render(<ComposeOrder />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
