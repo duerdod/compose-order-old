@@ -15,6 +15,9 @@ import AddProduct from './Components/Add/AddProduct';
 import Table from './Components/Table';
 import ProductPage from './Components/ProductPage/ProductPage';
 import { NotFound } from './Components/PageStatuses';
+import LoginPage from './Components/Login/LoginPage';
+// import AddProduct from './Components/Login/AddProduct';
+import NotFound from './Components/NotFound';
 
 const httpLink = new HttpLink({
   uri: '/graphql'
