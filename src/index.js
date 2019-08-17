@@ -1,59 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
-import './index.css';
+import { Global } from '@emotion/core';
+import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'emotion-theming';
-import Theme from './Components/Theme';
-import Header from './Components/Page/Header';
+// Components
+import theme, { reset } from './Components/Theme';
+import Header from './Components/ui/Header';
 import Nav from './Components/Nav';
-import Products from './Components/Order/Products'; // Fetches products, puts them to "global" state
-import OrderTable from './Components/OrderTable';
-import { AppWrapper } from './App';
+import { AppContainer } from './Components/Table';
+import { OrderContextProvider } from './context/order-context';
+import AddProduct from './Components/Add/AddProduct';
+import Table from './Components/Table';
 import ProductPage from './Components/ProductPage/ProductPage';
-import LoginPage from './Components/Login/LoginPage';
-// import AddProduct from './Components/Login/AddProduct';
-import NotFound from './Components/NotFound';
-import * as serviceWorker from './serviceWorker';
+import { NotFound } from './Components/PageStatuses';
 
-// const endpoint =
-//   process.NODE_ENV === 'production'
-//     ? process.env.REACT_APP_API_URL
-//     : process.env.REACT_APP_API_URL_DEV;
-
-const client = new ApolloClient({
-  uri: 'https://compose-order-api.herokuapp.com',
-  fetchOptions: {
-    mode: 'cors'
-  }
+const httpLink = new HttpLink({
+  uri: '/graphql'
 });
 
-const ComposeOrder = props => (
-  <ThemeProvider theme={Theme}>
+export const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache()
+});
+
+const { styles } = reset;
+
+const ComposeOrder = () => (
+  <ThemeProvider theme={theme}>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Products>
-          <AppWrapper>
+      <Global styles={{ styles }} />
+      <Router>
+        <OrderContextProvider>
+          <AppContainer>
             <Header />
             <Nav />
             <Switch>
-              <Route exact path="/" component={OrderTable} />
+              <Route exact path="/" component={Table} />
               <Route path="/product/:id" component={ProductPage} />
-              <Route path="/login" component={LoginPage} />
-              {/* <Route path="/addproduct" component={AddProduct} /> */}
+              <Route path="/add" component={AddProduct} />
               <Route component={NotFound} />
             </Switch>
-          </AppWrapper>
-        </Products>
-      </BrowserRouter>
+          </AppContainer>
+        </OrderContextProvider>
+      </Router>
     </ApolloProvider>
   </ThemeProvider>
 );
 
 ReactDOM.render(<ComposeOrder />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

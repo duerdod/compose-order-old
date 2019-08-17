@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { getOrderProducts, calcOrderValue } from '../utils/utils';
+import { getOrderProducts, calcOrderValue } from '../../Components/utils/utils';
 
 const Button = styled.button`
   outline: 0;

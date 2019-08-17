@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "^3.0.0",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.12",
     "apollo-boost": "^0.4.3",
@@ -10,11 +11,10 @@
     "emotion-theming": "^10.0.10",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.9.2",
+    "http-proxy-middleware": "^0.19.1",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-apollo": "^2.5.8",
+    "react": "^16.9.0",
     "react-dom": "^16.8.6",
-    "react-icons": "^3.7.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
@@ -38,5 +38,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://0.0.0.0:8000"
 }

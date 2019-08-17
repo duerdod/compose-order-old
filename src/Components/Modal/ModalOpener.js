@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { FiInfo } from 'react-icons/fi';
-import { Button } from '../ui';
+import { ReactComponent as Info } from '../../svg/info.svg';
+import { Button } from '../ui/Button';
 
 const HoverContainer = styled.div`
   position: relative;
@@ -47,7 +47,7 @@ export const ModalOpener = ({ toggleModalOpen, isModalOpen }) => {
   return (
     <HoverContainer>
       <ModalButton onClick={toggleModalOpen} isModalOpen={isModalOpen}>
-        <FiInfo />
+        <Info />
       </ModalButton>
     </HoverContainer>
   );

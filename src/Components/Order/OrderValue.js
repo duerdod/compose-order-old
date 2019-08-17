@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { calcOrderValue } from '../utils/utils';
 
-const OrderValueWrapper = styled.div`
+const OrderValueContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
   border: 2px solid #383838;
@@ -25,14 +24,14 @@ const Total = styled.div`
 `;
 
 const OrderValue = ({ products }) => (
-  <OrderValueWrapper>
+  <OrderValueContainer>
     <Total>
       <span> Total:</span>
     </Total>
     <Total>
-      <span> {calcOrderValue(products)} SEK</span>
+      <span> SEK</span>
     </Total>
-  </OrderValueWrapper>
+  </OrderValueContainer>
 );
 
 export default OrderValue;

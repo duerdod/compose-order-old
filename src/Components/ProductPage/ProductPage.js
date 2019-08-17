@@ -1,11 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
-import { OrderContext } from '../Order/Order';
-import { Button } from '../ui';
-import Product from './Product';
-
-// product PRODUCT
-import { dummy } from './dummy';
+import { Button } from '../ui/Button';
 
 const ProductWrapper = styled.div`
   background: ${({ theme }) => theme.white};
@@ -97,51 +92,35 @@ const BuyButton = styled(Button)`
   }
 `;
 
-const ProductPage = props => {
-  const [product, setProduct] = useState([]);
-  const { handleQuantityChange } = useContext(OrderContext);
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      setProduct(props.product);
-    } else {
-      setProduct(dummy);
-    }
-  }, [product]);
-
+const ProductPage = ({ history, match, product }) => {
   return (
-    <Product
-      id={props.match.params.id}
-      render={product => (
-        <ProductWrapper>
-          <GoBackButton onClick={props.history.goBack}> back </GoBackButton>
-          <ProductInformation>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/${product &&
-                product.images}`}
-              className="product-image"
-              alt=""
-            />
-          </ProductInformation>
-          <ProductInformation>
-            <div className="product-names">
-              <Name>{product.name}</Name>
-              <Subname>{product.subname}</Subname>
-            </div>
-            <BuyButton
-              onClick={() => {
-                handleQuantityChange(product, 'increment');
-                props.history.goBack();
-              }}
-            >
-              BUY ME
-            </BuyButton>
-            <Description>
-              <p>{product.description}</p>
-            </Description>
-          </ProductInformation>
-        </ProductWrapper>
-      )}
-    />
+    <ProductWrapper>
+      <GoBackButton onClick={history.goBack}> back </GoBackButton>
+      <ProductInformation>
+        <img
+          src={`${process.env.PUBLIC_URL}/images/${product && product.image}`}
+          className="product-image"
+          alt=""
+        />
+      </ProductInformation>
+      <ProductInformation>
+        <div className="product-names">
+          <Name>{product.productName}</Name>
+          <Subname>{product.brand}</Subname>
+        </div>
+        <BuyButton
+          onClick={() => {
+            // handleQuantityChange(product, 'increment');
+            history.goBack();
+          }}
+        >
+          BUY ME
+        </BuyButton>
+        <Description>
+          <p>{product.description}</p>
+        </Description>
+      </ProductInformation>
+    </ProductWrapper>
   );
 };
 
